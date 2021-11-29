@@ -36,11 +36,28 @@
     <h2>Vitrine Virtual</h2>
     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 
+        <div class="row row-cols-1 row-cols-md-3">
+        <?php $conn=mysqli_connect("localhost", "root", "","carrinho");     
+        $sql = "SELECT * FROM produtos";
+        $qr = mysqli_query($conn,$sql) or die(mysqli_error()); 
+
+
+        while($ln = mysqli_fetch_assoc($qr)){ ?>
+          <div class="col mb-4">
+            <div class="card h-100">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+            </div>
+          </div>
+          
+          <?php } ?>
+        </div>
+
     <?php
-          $conn=mysqli_connect("localhost", "root", "","carrinho");
-                   
-          $sql = "SELECT * FROM produtos";
-          $qr = mysqli_query($conn,$sql) or die(mysqli_error());
+          
           while($ln = mysqli_fetch_assoc($qr)){
              echo '<h2>'.$ln['nome'].'</h2> <br />';
              echo 'Preço : R$ '.number_format($ln['preco'], 2, ',', '.').'<br />';
